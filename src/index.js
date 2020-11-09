@@ -12,7 +12,6 @@ import VueAxios from 'vue-axios'
     ser: " ",
     amount: 0,
     buy: 0,
-    From: "",
   stud:{"name":"","group":"","mark":"","isDonePr":false}
   },
   computed: {
