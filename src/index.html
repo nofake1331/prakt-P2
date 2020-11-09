@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Document</title>
+</head>
+
+<body>
+  <style>
+    .red {
+      color: red;
+    }
+  </style>
+
+  <div id="app">
+
+    <input type="text" v-model="serch" v-on:keyup="serching">
+    <table border="1">
+      <tr>
+        <th>Фото</th>
+        <th>ПІ</th>
+        <th>Група</th>
+        <th>Рік народження</th>
+        <th>Здав</th>
+        <th>Видалити</th>
+      </tr>
+      <tr v-for="s in studs" v-bind:id="s._id" :class="s.name.indexOf(ser) ? '': 'red'">
+        <td><img :src="s.photo" width="35%" height="35%" alt=""></td>
+        <td>{{s.name}}</td>
+        <td>{{s.group}}</td>
+        <td>{{s.mark}}</td>
+        
+        
+        <td><input type="checkbox" v-model="s.isDonePr"></td>
+        <td><a href="#" v-on:click="dele">Видалити</a>
+      </tr>
+
+    </table>
+
+
+    <span style="font-size:25px;">EnterName:</span>
+    <input v-model="stud.name">
+    <span style="font-size:25px;">EnterGroup : </span>
+    <select v-model="stud.group">
+      <option>17 19</option>
+      <option>17 29</option>
+    </select>
+    <span style="font-size:25px;">EnterAge:</span>
+    <input v-model.number="stud.mark" type="number">
+    <input type="checkbox" v-model="stud.isDonePr">
+    <button v-on:click="add">ok</button>
+<br><br>
+<div>
+
+  Enter Amount: <input type="number" v-model="amount" ><br><br>
+  Convert From: 
+  <select v-model="From"  >
+    <option v-for="v in valuta" > {{v.ccy}}  </option>
+  </select> 
+  Convert to:
+  <select>
+    <option >UAH </option>
+  </select>
+  {{buy}}
+</div>
+
+  </div>
+
+
+
+
+
+</body>
+<script src="/dist/main.js"></script>
+</html>
