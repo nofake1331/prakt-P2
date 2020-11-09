@@ -48,9 +48,8 @@ import VueAxios from 'vue-axios'
       console.log(id);
     },
     val: function(){
-      if (this.From = "USD"){
-          this.con = this.amount *  this.valuta.sale 
-      } 
+       this.buy = document.getElementById("kek").value;
+      
     }
   },
 })

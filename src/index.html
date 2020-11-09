@@ -57,21 +57,21 @@
 
   Enter Amount: <input type="number" v-model="amount" ><br><br>
   Convert From: 
-  <select v-model="From"  >
-    <option v-for="v in valuta" > {{v.ccy}}  </option>
+  <select v-model="From" id="kek" v-on:change  ="val" >
+    <option :value="v.buy" v-for="v in valuta"  > {{v.ccy}}  </option>
   </select> 
   Convert to:
   <select>
     <option >UAH </option>
   </select>
-  {{buy}}
-</div>
+  = {{amount*buy}}
+
 
   </div>
 
 
 
-
+</div>
 
 </body>
 <script src="/dist/main.js"></script>
