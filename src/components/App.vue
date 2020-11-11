@@ -51,6 +51,20 @@
   = {{amount*buy}}
 
   </div>
+
+<br><br><br>
+
+
+  <div>
+    <select   id="eke" v-on:click  ="otdel" >
+      <option v-for="c in city"   :value="c.Description" > {{c.Description}}  </option>
+  </select> 
+  <br><br>
+  <select  >
+      <option v-for="o in otdelen"  > {{o.Description}}  </option>
+  </select> 
+  </div>
+
     </div>
 </template>
 <script>
@@ -66,6 +80,9 @@ export default {
     return{
     valuta:[],
     studs:[],
+    city:[],
+    gorod: "",
+    otdelen: [],
     serch: "",
     ser: " ",
     amount: 0,
@@ -89,9 +106,26 @@ export default {
    
 
     axios.get("https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5").then((Response)=>{
+  
       this.valuta = Response.data;
       this.valuta.splice(3);
+  
     })
+
+    
+   axios.post("https://api.novaposhta.ua/v2.0/json/",{
+        modelName: "Address",
+        calledMethod: "getCities",
+        apiKey: "9a557481f95094531372a9d1b55222c8",
+      })
+      .then((response) => {
+        console.log(response.data);
+        this.city = response.data.data;
+      });
+ 
+
+         
+    
   },
   methods: {
     serching: function () {
@@ -137,12 +171,30 @@ export default {
           });
            this.studs[this.id] = this.stud;
            return this.studs;
-    
+ 
                
           
-     }
-  },
-}
+     },
+
+    otdel: function(){
+  this.gorod = document.getElementById("eke").value;
+
+           axios.post("https://api.novaposhta.ua/v2.0/json/",{
+    "modelName": "AddressGeneral",
+    "calledMethod": "getWarehouses",
+    "methodProperties": {
+         "CityName":  this.gorod,
+    },
+    "apiKey": "9a557481f95094531372a9d1b55222c8"
+}).then((Response)=>{
+             this.otdelen = Response.data.data
+
+          })
+          return this.otdelen;
+    },
+  }
+  }
+
 </script>
 <style scoped>
     
