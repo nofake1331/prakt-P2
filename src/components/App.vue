@@ -19,7 +19,7 @@
         
         <td><input type="checkbox" v-model="s.isDonePr"></td>
         <td><a href="#"  v-on:click="studentId = s._id,dele()">Видалити</a> </td>
-       <td><img src="карандаш.png" v-on:click="studentId = s._id,stud.name=s.name,stud.group=s.group,stud.mark=s.mark,stud.isDonePr=s.isDonePr,id=index, v = 1"></td>
+       <td><img src="карандаш.png" v-on:click="studentId = s._id, id=index,stud=s , v = 1"></td>
       </tr>     
     </table>
 
@@ -27,21 +27,21 @@
     <span style="font-size:25px;">EnterName:</span>
     <input v-model="stud.name">
     <span style="font-size:25px;">EnterGroup : </span>
-    <select v-model="stud.group">
+    <select  v-model="stud.group">
       <option>17 19</option>
       <option>17 29</option>
     </select>
     <span style="font-size:25px;">EnterAge:</span>
-    <input v-model.number="stud.mark" type="number">
-    <input type="checkbox" v-model="stud.isDonePr">
-    <button v-on:click="add">ok</button>
+    <input  v-model.number="stud.mark" type="number">
+    <input  type="checkbox" v-model="stud.isDonePr">
+    <button  v-on:click="add">ok</button>
     <button v-on:click="updat"  :class="v == 0 ? 'hide':'' ">update</button>
 <br><br>
 <div>
 
   Enter Amount: <input type="number" v-model="amount" ><br><br>
   Convert From: 
-  <select  id="kek" v-on:change  ="val" >
+  <select  id="kek" v-on:click  ="val" >
     <option :value="v.buy" v-for="v in valuta"  > {{v.ccy}}  </option>
   </select> 
   Convert to:
@@ -163,6 +163,7 @@ export default {
 
      updat: function(){
              this.v = 0;
+            
              Vue.axios.put('http://46.101.212.195:3000/students/' + this.studentId,{
              name: this.stud.name,
              mark: this.stud.mark,
@@ -170,9 +171,9 @@ export default {
              isDonePr: this.stud.isDonePr
           });
            this.studs[this.id] = this.stud;
+           this.stud = {"photo":"https://robohash.org/fdgdf5345345","name":"","group":"","mark":"","isDonePr":false}
            return this.studs;
- 
-               
+    
           
      },
 
