@@ -19,7 +19,10 @@
       </tr>     
     </table>
 
-    <modal v-show="isModalVisible" @close="closeModal"></modal>
+    <modal v-show="modalShown" @close="closeModal">
+    <h3 slot="footer">{{studs.name}}</h3>
+    <img slot="footer"  :src="studs.photo" width="35%" height="35%">
+    </modal>
 
 </div>
 
@@ -41,8 +44,9 @@ export default {
        },
        data: function(){
          return{
-             isModalVisible: false,
+             modalShown: false,
              studs:{},
+
          };
        },
        
@@ -54,11 +58,11 @@ export default {
 
     methods: {
       showModal() {
-        this.isModalVisible = true;
+        this.modalShown = true;
         this.$emit('stud',this.studs);
       },
       closeModal() {
-        this.isModalVisible = false;
+        this.modalShown = false;
       }
     },
           

@@ -27,7 +27,7 @@
         </section>
         <footer class="modal-footer">
           <slot name="footer">
-            Ну вот модальное окно, как передовать данные между компонентами я не знаю.
+  
           </slot>
         </footer>
       </div>
@@ -45,7 +45,8 @@
             
          return{
       studs:{},
-         };
+  
+         }
        },
 
     methods: {
