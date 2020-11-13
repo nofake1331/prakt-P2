@@ -1,12 +1,12 @@
 <template>
 
   <div>
-    <select   id="eke" v-on:click  ="otdel" >
-      <option v-for="c in city"   :value="c.Description" > {{c.Description}}  </option>
-  </select> 
+    <!-- <select   id="eke" v-on:click  ="otdel" >
+      <option v-for="c in city"   :value="c.Description">  {{c.Description}}  </option>
+  </select>  -->
   <br><br>
   <select  >
-      <option v-for="o in otdelen"  > {{o.Description}}  </option>
+      <!-- <option v-for="o in otdelen"> {{o.Description}}  </option> -->
   </select> 
   </div>
 
