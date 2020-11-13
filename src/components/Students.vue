@@ -55,6 +55,7 @@
 <br><br><br>
 
 <router-link v-bind:to="'/Poshta/'">go to poshta</router-link>
+<router-link v-bind:to="'/Pogoda/'">go to pogoda</router-link>
 </div>
 </template>
 <script>
