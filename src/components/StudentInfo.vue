@@ -18,7 +18,7 @@
         <td><input type="checkbox" v-model="studs.isDonePr"></td>
       </tr>     
     </table>
-
+Количество студентов = {{getCount}}
     <modal v-show="modalShown" @close="closeModal">
     <h3 slot="footer">{{studs.name}}</h3>
     <img slot="footer"  :src="studs.photo" width="35%" height="35%">
@@ -65,7 +65,9 @@ export default {
         this.modalShown = false;
       }
     },
-          
+          computed: {
+               getCount() {return this.$store.getters.getCount}
+          },
 }
 
 

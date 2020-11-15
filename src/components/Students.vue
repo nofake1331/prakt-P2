@@ -1,6 +1,10 @@
 <template>
+
     <div>
+      <link rel="stylesheet" type="text/css" :href="getStyle" />
             <input type="text" v-model="serch" v-on:keyup="serching">
+ 
+ <button @click="chengstyle">изменить стиль</button>
     <table border="1">
       <tr>
         <th>Фото</th>
@@ -22,7 +26,8 @@
        <td><img src="карандаш.png" v-on:click="studentId = s._id, id=index,stud=s , v = 1"></td>
       </tr>     
     </table>
-
+Количество студентов = {{getCount}}
+<br> <br>
 
     <span style="font-size:25px;">EnterName:</span>
     <input v-model="stud.name">
@@ -37,6 +42,8 @@
     <button  v-on:click="add">ok</button>
     <button v-on:click="updat"  :class="v == 0 ? 'hide':'' ">update</button>
 <br><br>
+
+
 <div>
 
   Enter Amount: <input type="number" v-model="amount" ><br><br>
@@ -85,16 +92,13 @@ export default {
     stud:{"photo":"https://robohash.org/fdgdf5345345","name":"","group":"","mark":"","isDonePr":false}
 
   }},
-  computed: {
-
-
-  },
-  mounted: function(){
-    axios.get("http://46.101.212.195:3000/students").then((Response)=>{
+ 
+  mounted: async function(){
+    let Response = await axios.get("http://46.101.212.195:3000/students");
       this.studs = Response.data;
+      this.$store.commit('setCount',this.studs.length);
 
 
-    })
    
 
     axios.get("https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5").then((Response)=>{
@@ -152,7 +156,14 @@ export default {
        this.buy = document.getElementById("kek").value;
       
     },
-
+     chengstyle: function(){
+          if(this.getStyle == "dark.css"){
+            this.$store.commit('setStyle',"white.css")
+          }
+         else {
+             this.$store.commit('setStyle',"dark.css")
+         }
+     },
      updat: function(){
              this.v = 0;
             
@@ -169,6 +180,14 @@ export default {
           
      },
   },
+computed: {
+  getCount(){
+    return this.$store.getters.getCount
+  },
+   getStyle(){
+    return this.$store.getters.getStyle
+  }
+},
   filters: {
    fil: function (value) {
       return value.toFixed(2);
