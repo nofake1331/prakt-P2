@@ -22,8 +22,8 @@
         
         
         <td><input type="checkbox" v-model="s.isDonePr"></td>
-        <td><a href="#"  v-on:click="studentId = s._id,dele()">Видалити</a> </td>
-       <td><img src="карандаш.png" v-on:click="studentId = s._id, id=index,stud=s , v = 1" v-show="s.group==getUser.group"></td>
+        <td><a href="#"  v-on:click="studentId = s._id,dele()" v-show="s.group==getUser.group">Видалити</a> </td>
+       <td><img src="карандаш.png" v-on:click="studentId = s._id, id=index,stud=s , v = 1" ></td>
       </tr>     
     </table>
 Количество студентов = {{getCount}}
