@@ -23,7 +23,7 @@
         
         <td><input type="checkbox" v-model="s.isDonePr"></td>
         <td><a href="#"  v-on:click="studentId = s._id,dele()">Видалити</a> </td>
-       <td><img src="карандаш.png" v-on:click="studentId = s._id, id=index,stud=s , v = 1"></td>
+       <td><img src="карандаш.png" v-on:click="studentId = s._id, id=index,stud=s , v = 1" v-show="s.group==getUser.group"></td>
       </tr>     
     </table>
 Количество студентов = {{getCount}}
@@ -186,13 +186,16 @@ computed: {
   },
    getStyle(){
     return this.$store.getters.getStyle
+  },
+  getUser(){
+    return this.$store.getters.getUser
   }
 },
   filters: {
    fil: function (value) {
       return value.toFixed(2);
     },
-
+  
    
   }
   

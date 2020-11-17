@@ -8,10 +8,12 @@ const store = new Vuex.Store({
     state: {
       count: 0,
       x: "",
+      user: null
     },
     mutations: {
         setCount: (state, count) => state.count = count,
-        setStyle: (state,style) => state.x = style
+        setStyle: (state,style) => state.x = style,
+        setUser: (state,user) => state.user = user
     },
     getters: {
         getCount: (state) =>
@@ -21,6 +23,10 @@ const store = new Vuex.Store({
         getStyle: (state) =>
         {
             return state.x
+        },
+        getUser: (state)=>
+        {
+          return state.user
         }
     }
   })
